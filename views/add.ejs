@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container d-flex gap-5 py-3 my-5 fs-5">
+  <div class="detail-image-and-button d-flex flex-column align-items-center gap-4">
+    <img src="./assets/images/image_waiting.png" class="detail-image rounded border-1" alt="book-image" />
+
+    <button id="update" type="button" class="btn btn-success">Add review</button>
+  </div>
+
+  <div class="detail-book d-flex flex-column justify-content-between gap-3">
+    <div>
+        <label for="add-title" class="form-label">Title</label>
+        <input type="text" id="add-title" class="form-control">
+    </div>  
+
+    <div>
+        <label for="add-author" class="form-label">Author</label>
+        <input type="text" id="add-author" class="form-control">
+    </div>
+
+    <div>
+        <label for="add-isbn" class="form-label">ISBN</label>
+        <input type="text" id="add-isbn" class="form-control">
+    </div>
+
+    <div>
+        <label for="add-score" class="form-label">Score</label>
+        <input type="text" id="add-score" class="form-control">
+    </div>
+
+    <div>
+        <label for="add-review" class="form-label">Review</label>
+        <textarea class="form-control" rows="20" cols="145"></textarea>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

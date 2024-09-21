@@ -1,0 +1,69 @@
+<%- include("partials/header.ejs") %>
+
+<main class="container mt-5 mb-5">
+  <div class="list-books-title container d-flex justify-content-between align-items-center">
+    <h3>Review books</h3>
+
+    <div class="sort-book d-flex align-items-center">
+      Sort by:
+      <% if(locals.sortSelected) {%>
+      <form action="/sort" method="post" id="sortForm">
+          <select class="form-select" id="sort" name="sort">
+            <option value="title" <%= sortSelected === 'title' ? 'selected' : '' %> >Title</option>
+            <option value="rating" <%= sortSelected === 'rating' ? 'selected' : '' %>>Rating</option>
+            <option value="recency" <%= sortSelected === 'recency' ? 'selected' : '' %>>Recency</option>
+          </select>
+      </form>
+      <% } %>
+    </div>
+  </div>
+
+  <hr />
+
+  <% if(locals.books) { %>
+    <div class="list-book-review d-flex flex-column align-items-center gap-4">
+      <% books.forEach((book) => { %>
+      <div class="book-item-card rounded-4 container d-flex p-5 align-items-center shadow">
+        <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" class="rounded img-fluid" alt="book-img"/>
+
+        <div class="display-info-book ms-5 d-flex flex-column">
+          <p class="fw-bolder fs-3"><%= book.title %></p>
+          <div class="author-and-date d-flex justify-content-between">
+            <p class="fw-bold fst-italic"><%= book.author %></p>
+            <p class="date"><%= book.review_date.getDate() %>/<%= book.review_date.getMonth()+1 %>/<%= book.review_date.getFullYear() %></p>
+          </div>
+          <p>Rating <span class="review-point fw-bolder"><%= book.rating %></span> / 10</p>
+          <div class="lh-base mt-2" style="font-style: normal; font-family: Poppins; overflow: hidden; text-overflow: ellipsis; text-align: justify; width: 950px; height: 100px;">
+            <%= book.review_text %>
+          </div>
+        
+          <div class="group-button d-flex justify-content-between mt-3">
+            <div class="btn-edit-delete d-flex justify-content-between gap-2">
+              <!-- <form action="/review/<%=book.review_id%>/edit" method="GET"> -->
+                <button name="edit-btn-home" id="edit-btn-home" type="button" class="btn btn-info" onclick="location.href='/review/<%=book.review_id%>/edit'">Edit</button>
+              <!-- </form> -->
+              <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+            <form action="/review/<%= book.review_id %>" method="get">
+              <button id="btn-more-detail" type="submit" class="btn btn-link align-self-end">View detail</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  <% } %>
+</main>
+
+<script>
+  //SORT BY
+  //Add an event listener to the dropdown menu that listens for a change in its value. 
+  //When a change is detected, the JavaScript function will submit the form.
+  const sort = document.getElementById("sort");
+  sort.addEventListener("change", function() {
+    document.getElementById("sortForm").submit();
+  });
+
+</script>
+
+<%- include("partials/footer.ejs") %>

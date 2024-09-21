@@ -1,0 +1,32 @@
+<%- include("partials/header.ejs") %>
+
+<% if(locals.book) {%>
+<div class="container d-flex gap-5 py-3 my-5 fs-5 justify-content-between">
+  <div class="detail-image-and-button d-flex flex-column align-items-center gap-4">
+    <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="detail-image rounded border-1" alt="book-image" />
+
+    <div class="button-custom d-flex justify-content-center gap-3">
+      <!-- <form action="/review/<%=book.review_id%>/edit" method="get"> -->
+        <button id="edit" type="button" class="btn btn-info" onclick="location.href='/review/<%=book.review_id%>/edit'">Edit</button>
+      <!-- </form> -->
+      <button id="delete" type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+
+  <div class="detail-book">
+    <p class="fw-bolder fs-3"><%= book.title %></p>
+    <div class="author-and-date d-flex justify-content-between">
+      <p class="fw-bold fst-italic"><%= book.author %></p>
+      <p class="date"><%= book.review_date.getDate() %>/<%= book.review_date.getMonth()+1 %>/<%= book.review_date.getFullYear() %></p>
+    </div>
+    <div id="score-review">
+      <p>Rating <span class="review-point fw-bolder"><%= book.rating %></span> / 10</p>
+    </div>
+    <p id="pre-review" class="lh-base mt-2" style="text-align: justify; width: 900px; min-height: 300px;">
+      <%= book.review_text %>  
+    </p>
+  </div>
+</div>
+<% } %>
+
+<%- include("partials/footer.ejs") %>
