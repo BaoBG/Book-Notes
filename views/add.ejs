@@ -2,37 +2,50 @@
 
 <div class="container d-flex gap-5 py-3 my-5 fs-5">
   <div class="detail-image-and-button d-flex flex-column align-items-center gap-4">
-    <img src="./assets/images/image_waiting.png" class="detail-image rounded border-1" alt="book-image" />
-
-    <button id="update" type="button" class="btn btn-success">Add review</button>
+    <img id="image_preview" src="./assets/images/image_waiting.png" class="detail-image rounded border-1"/>   
   </div>
 
-  <div class="detail-book d-flex flex-column justify-content-between gap-3">
+  <form action="/add" method="POST" class="detail-book d-flex flex-column justify-content-between gap-3">
     <div>
-        <label for="add-title" class="form-label">Title</label>
-        <input type="text" id="add-title" class="form-control">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" id="title" class="form-control" required>
     </div>  
 
     <div>
-        <label for="add-author" class="form-label">Author</label>
-        <input type="text" id="add-author" class="form-control">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" name="author" id="author" class="form-control" required>
     </div>
 
     <div>
-        <label for="add-isbn" class="form-label">ISBN</label>
-        <input type="text" id="add-isbn" class="form-control">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input type="text" name="isbn" id="isbn" class="form-control" oninput="updateImagePreview()" required>
     </div>
 
     <div>
-        <label for="add-score" class="form-label">Score</label>
-        <input type="text" id="add-score" class="form-control">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="text" name="rating" id="rating" class="form-control" required>
     </div>
 
     <div>
-        <label for="add-review" class="form-label">Review</label>
-        <textarea class="form-control" rows="20" cols="145"></textarea>
+        <label for="review" class="form-label">Review</label>
+        <textarea class="form-control" name="review" id="review" rows="20" cols="145" required></textarea>
     </div>
-  </div>
+
+    <button id="btn-add" type="submit" class="btn btn-success">Add review</button>
+  </form>
 </div>
 
 <%- include("partials/footer.ejs") %>
+
+<script>
+  function updateImagePreview() {
+    const isbn =  document.getElementById("isbn").value;
+    const previewImg = document.getElementById("image_preview");
+    if (isbn) {
+      previewImg.src = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+      previewImg.alt = `Cover Image Book for ISBN ${isbn}`;
+    } else {
+      previewImg.alt = "Waiting Image";
+    }
+  }
+</script>

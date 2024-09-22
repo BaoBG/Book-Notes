@@ -39,14 +39,14 @@
         
           <div class="group-button d-flex justify-content-between mt-3">
             <div class="btn-edit-delete d-flex justify-content-between gap-2">
-              <!-- <form action="/review/<%=book.review_id%>/edit" method="GET"> -->
-                <button name="edit-btn-home" id="edit-btn-home" type="button" class="btn btn-info" onclick="location.href='/review/<%=book.review_id%>/edit'">Edit</button>
-              <!-- </form> -->
-              <button type="button" class="btn btn-danger">Delete</button>
+              <button name="edit-btn-home" id="edit-btn-home" type="button" class="btn btn-info" onclick="location.href='/book/<%=book.id%>/edit'">Edit</button>
+              <form action="/delete/<%= book.id %>" method="POST">
+                <button id="delete" type="submit" class="btn btn-danger">Delete</button>
+              </form>
             </div>
-            <form action="/review/<%= book.review_id %>" method="get">
-              <button id="btn-more-detail" type="submit" class="btn btn-link align-self-end">View detail</button>
-            </form>
+
+            <button id="btn-more-detail" type="button" class="btn btn-link align-self-end" onclick="location.href='/book/<%=book.id%>'">View detail</button>
+            
           </div>
         </div>
       </div>

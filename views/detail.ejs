@@ -6,10 +6,10 @@
     <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="detail-image rounded border-1" alt="book-image" />
 
     <div class="button-custom d-flex justify-content-center gap-3">
-      <!-- <form action="/review/<%=book.review_id%>/edit" method="get"> -->
-        <button id="edit" type="button" class="btn btn-info" onclick="location.href='/review/<%=book.review_id%>/edit'">Edit</button>
-      <!-- </form> -->
-      <button id="delete" type="button" class="btn btn-danger">Delete</button>
+      <button id="edit" type="button" class="btn btn-info" onclick="location.href='/book/<%=book.id%>/edit'">Edit</button>
+      <form action="/delete/<%= book.id %>" method="post">
+        <button id="delete" type="submit" class="btn btn-danger">Delete</button>
+      </form>
     </div>
   </div>
 

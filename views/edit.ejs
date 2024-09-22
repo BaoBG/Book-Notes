@@ -7,27 +7,26 @@
       <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="detail-image rounded border-1" alt="book-image" />
     </div>
 
-    <div class="detail-book">
-      <form action="/review/<%= book.review_id %>" method="POST" class="d-flex flex-column justify-content-between gap-3">
+      <form action="/book/<%= book.id %>/edit" method="POST" class="d-flex flex-column justify-content-between gap-3">
           <div>
-              <label for="edit-title" class="form-label">Title</label>
-              <input type="text" id="edit_title" value="<%= book.title %>" class="form-control" disabled readonly>
+              <label for="title" class="form-label">Title</label>
+              <input type="text" name="title" id="title" value="<%= book.title %>" class="form-control" disabled readonly>
           </div>  
         
           <div>
-              <label for="edit-author" class="form-label">Author</label>
-              <input type="text" id="edit_author" value="<%= book.author %>" class="form-control" disabled readonly>
+              <label for="author" class="form-label">Author</label>
+              <input type="text" name="author" id="author" value="<%= book.author %>" class="form-control" disabled readonly>
           </div>
         
-          <p class="form-label">Rating <input type="text" name="edit_rating" id="edit_rating" class="rounded px-2" value="<%= book.rating %>"/> / 10</p>
+          <p class="form-label">Rating <input type="text" name="rating" id="rating" class="rounded px-2" value="<%= book.rating %>"/> / 10</p>
         
           <div>
-              <label for="edit-review" class="form-label">Review</label>
-              <textarea class="form-control" name="edit_review" id="edit_review" rows="20" cols="145"><%= book.review_text %></textarea>
+              <label for="review" class="form-label">Review</label>
+              <textarea class="form-control" name="review" id="review" rows="20" cols="145"><%= book.review_text %></textarea>
           </div>
         <button id="update" type="submit" class="btn btn-success">Update</button>
       </form>
-    </div>
+
 </div>
 <% } %>
 
